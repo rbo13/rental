@@ -1,0 +1,91 @@
+{{define "content"}}
+<div id="dashboard" class="section">
+  <div class="section">
+    <div class="row">
+      <div class="col s12 l8">
+        <div class="card medium">
+          <div class="card-content">
+            <div class="row col s12 l12">
+              <p>
+                Select type:
+              </p>
+            </div>
+          </div>
+          <div class="card-tabs">
+            <ul class="tabs tabs-fixed-width">
+              <li class="tab"><a href="#test4">ROOM</a></li>
+              <li class="tab"><a href="#test5">HOUSE</a></li>
+            </ul>
+          </div>
+          <div class="card-content grey lighten-4">
+            <div id="test4">
+              <div class="row col s12 l12">
+                <div class="col s12 l3 mt-15">
+                  <input id="startDate" type="text" class="datepicker" placeholder="Start Date">
+                </div>
+                <div class="col s12 l3 mt-15">
+                  <input id="endDate" type="text" class="datepicker" placeholder="End Date">
+                </div>
+                <div class="input-field col s12 l6">
+                  <select>
+                    <option value="" disabled selected>Choose</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                  </select>
+                  <label>Adults (18+)</label>
+                </div>
+
+                <a class="waves-effect waves-light btn light-green darken-3">search</a>
+              </div>
+            </div>
+            <div id="test5">
+              <div class="row col s12 l12">
+                <div class="col s12 l3 mt-15">
+                  <input id="startDate" type="text" class="datepicker mt-15" placeholder="Start Date">
+                </div>
+                <div class="col s12 l3 mt-15">
+                  <input id="endDate" type="text" class="datepicker mt-15" placeholder="End Date">
+                </div>
+                <div class="input-field col s12 l3">
+                  <select>
+                    <option value="" disabled selected>Choose</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                  </select>
+                  <label>Adults (18+)</label>
+                </div>
+                <div class="input-field col s12 l3">
+                  <select>
+                    <option value="" disabled selected>Choose</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                  </select>
+                  <label>Children (0-7)</label>
+                </div>
+                <a class="waves-effect waves-light btn light-green darken-3">search</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col s12 l4 ads">
+        <div class="card-panel white center">
+          <span class="black-text">
+            <strong class="light-green-text text-`darken-3">ROOMS</strong>
+            <div>
+              Deals under PHP300
+            </div>
+            <div style="margin-right: 75px;">
+              <span><i class="small material-icons">arrow_forward</i> <p style="margin-top: -33px; margin-left: 94px;">See deals</p> </span>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{end}}

@@ -1,0 +1,26 @@
+{{define "content"}}
+<div id="rent">
+  <div class="section">
+    <div class="row">
+      <div class="col s12 l4">
+        {{template "partials/side_nav" .}}
+      </div>
+      <div class="col s12 l8">
+        <div style="padding: 12px;">
+          <div class="form-header">
+            <h5>My Rent Information</h5>
+          </div>
+          <div class="mt-15">
+            <p class="ml-20">Tenant ID: <strong style="margin-left: 12px;"> {{.tenantID}}</strong></p>
+            <p class="ml-20">Unit Number: <strong style="margin-left: 12px;"> 537</strong></p>
+            <p class="ml-20">Unit Type: <strong style="margin-left: 12px;"> {{.rent.UnitType}}</strong></p>
+            <p class="ml-20">Rental Fee: <strong style="margin-left: 12px;"> {{.rent.UnitPrice}}</strong></p>
+            <p class="ml-20">Date Started: <strong style="margin-left: 12px;"> 25 February, 2018</strong></p>
+            <p class="ml-20">Date Ended: <strong style="margin-left: 12px;"> 26 February, 2018</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{end}}

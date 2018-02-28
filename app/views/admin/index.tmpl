@@ -1,0 +1,33 @@
+{{define "content"}}
+<div id="admin">
+  <div class="section">
+    <div class="row">
+      <div class="container">
+        <form method="post" action="/admin/login">
+          <div class="col s12 offset-l3 l6 card card-container">
+            <div class="card-header grey lighten-3">
+              <h5 class="light-green-text text-darken-3">Admin Login</h5>
+            </div>
+            <div class="card-content">
+              {{if .csrf_token}}
+                <input type="hidden" name="csrf_token" value="{{.csrf_token}}" />
+              {{end}}
+              <div class="input-field col s12">
+                <input id="InputEmail" name="email" type="email" class="validate" required>
+                <label for="email">Email Address</label>
+              </div>
+              <div class="input-field col s12">
+                <input id="InputPassword" name="password" type="password" class="validate" required>
+                <label for="password">Password</label>
+              </div>
+            </div>
+            <div class="card-action grey lighten-4">
+              <button type="submit" class="btn btn-success light-green darken-3 waves-effect waves-light">Login</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{end}}

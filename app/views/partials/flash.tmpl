@@ -1,0 +1,39 @@
+{{define "partials/flash"}}
+
+  {{if .flash_success}}
+    <script type="text/javascript">
+      $(document).ready(function () {
+        var $toast_success = $(`<span><i class="material-icons left">check</i>{{.flash_success}}</span>`);
+        Materialize.toast($toast_success, 4000, 'green success center-align')
+      });
+    </script>
+  {{end}}
+
+  {{if .flash_info}}
+    <script type="text/javascript">
+      $(document).ready(function() {
+        var $toast_info = $(`<span><i class="material-icons left">info_outline</i>{{.flash_info}}</span>`);
+        Materialize.toast($toast_info, 4000, 'blue info center-align')
+      });
+    </script>
+  {{end}}
+
+  {{if .flash_warning}}
+    <script type="text/javascript">
+      $(document).ready(function() {
+        var $toast_warning = $(`<span><i class="material-icons left">warning</i>{{.flash_warning}}</span>`);
+        Materialize.toast($toast_warning, 4000, 'orange warning center-align')
+      });
+    </script>
+  {{end}}
+
+  {{if .flash_error}}
+    <script type="text/javascript">
+      $(document).ready(function() {
+        var $toast_error = $(`<span><i class="material-icons left">error_outline</i>{{.flash_error}}</span>`);
+        Materialize.toast($toast_error, 4000, 'red error center-align')
+      });
+    </script>
+  {{end}}
+  
+{{end}}

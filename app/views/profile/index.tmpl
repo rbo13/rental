@@ -1,0 +1,129 @@
+{{define "content"}}
+<div id="profile">
+  <div class="section">
+    <div class="row">
+      <div class="col s12 l4">
+        {{template "partials/side_nav" .}}
+      </div>
+      <div class="col s12 l4">
+        <div style="padding: 12px;">
+          <div class="form-header">
+            <h5>My Profile</h5>
+          </div>
+          <div class="mt-15">
+            <p class="ml-20">Tenant ID: <strong style="margin-left: 12px;"> {{.tenantID}}</strong></p>
+
+            <ul class="collapsible popout" data-collapsible="accordion">
+              <li>
+                <div class="collapsible-header"><i class="material-icons">email</i>Email Address: <strong style="margin-left: 12px;"> {{.email}}</strong></div>
+                <div class="collapsible-body">
+                  <form action="/update/email" method="post">
+                    {{if .csrf_token}}
+                      <input type="hidden" name="csrf_token" value="{{.csrf_token}}" />
+                    {{end}}
+                    <div class="input-field col s12">
+                      <input placeholder="{{.email}}" id="email" type="email" class="validate" name="email" place>
+                      <label for="email">Email Address</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary waves-effect waves-light light-green darken-3">Update Email</button>
+                  </form>
+                </div>
+              </li>
+              <li>
+                <div class="collapsible-header"><i class="material-icons">contact_phone</i>Phone number: <strong style="margin-left: 12px;"> {{.phoneNumber}}</strong> </div>
+                <div class="collapsible-body">
+                  <form action="/update/phone" method="post">
+                    {{if .csrf_token}}
+                      <input type="hidden" name="csrf_token" value="{{.csrf_token}}" />
+                    {{end}}
+                    <div class="input-field col s12">
+                      <input placeholder="{{.phoneNumber}}" id="phoneNumber" type="text" class="validate" name="phoneNumber">
+                      <label for="phoneNumber">Phone number</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary waves-effect waves-light light-green darken-3">Update Phone Number</button>
+                  </form>
+                </div>
+              </li>
+
+              <li>
+                <div class="collapsible-header"><i class="material-icons">account_circle</i>Profile Info: </div>
+                <div class="collapsible-body">
+                  <form action="/update/info" method="post">
+                    <div class="row">
+                      <div class="input-field col s6">
+                        <input id="first_name" type="text" class="validate" name="firstName" value="{{.firstName}}">
+                        <label for="first_name">First Name</label>
+                      </div>
+                      <div class="input-field col s6">
+                        <input id="last_name" type="text" class="validate" name="lastName" value="{{.lastName}}">
+                        <label for="last_name">Last Name</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <p style="margin-left: 12px;">
+                        Gender: {{.gender}}
+                        {{if eq .gender "male"}}
+                          <input class="with-gap" name="gender" type="radio" id="male" value="male" checked/>
+                          <label for="male">Male</label>
+                          <input class="with-gap" name="gender" type="radio" id="female" value="female"/>
+                          <label for="female">Female</label>
+                        {{else if eq .gender "female"}}
+                          <input class="with-gap" name="gender" type="radio" id="male" value="male"/>
+                          <label for="male">Male</label>
+                          <input class="with-gap" name="gender" type="radio" id="female" value="female" checked/>
+                          <label for="female">Female</label>
+                        {{else}}
+                          <input class="with-gap" name="gender" type="radio" id="male" value="male"/>
+                          <label for="male">Male</label>
+                          <input class="with-gap" name="gender" type="radio" id="female" value="female"/>
+                          <label for="female">Female</label>
+                        {{end}}
+                      </p>
+                    </div>
+                    <div class="row col s12 l12">
+                      <input id="birthDate" type="text" class="datepicker" placeholder="Birthdate" name="birthDate" value="{{.birthDate}}">
+                    </div>
+                    <div class="row">
+                      <p id="age"></p>
+                    </div>
+                    <button type="submit" class="btn btn-primary waves-effect waves-light light-green darken-3">Update Profile</button>
+                  </form>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 l4 center">
+        <div style="padding: 12px;">
+          <img class="circle responsive-img" src="/assets/img/user_noimg.png">
+        </div>
+        <div>
+          <a class="modal-trigger" href="#changePicture">Change Picture</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="changePicture" class="modal">
+    <div class="modal-content">
+      <h5>Change Picture</h5>
+      <form method="post" action="/update/picture">
+        {{if .csrf_token}}
+          <input type="hidden" name="csrf_token" value="{{.csrf_token}}" />
+        {{end}}
+        <div class="file-field input-field">
+          <div class="btn light-green darken-3">
+            <span>File</span>
+            <input type="file">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary waves-effect waves-light light-green darken-3">Update Picture</button>
+      </form>
+    </div>
+  </div>
+{{end}}

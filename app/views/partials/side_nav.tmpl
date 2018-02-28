@@ -1,0 +1,48 @@
+{{define "partials/side_nav"}}
+  <div class="col s12" style="position: relative;">
+    <img class="circle responsive-img" src="/assets/img/user_noimg.png" style="width: 50px; height: 50px;"> 
+    <p style="position: absolute; top: 0px; left: 80px;">{{.fullName}}</p>
+  </div>
+  <div>
+    <ul class="collection">My Account
+      <li class="collection-item">
+        <a href="/profile">Profile</a>
+      </li>
+      <li class="collection-item">
+        <a href="/profile">Bank & Cards</a>
+      </li>
+      <li class="collection-item">
+        <a href="/change">Change Password</a>
+      </li>
+    </ul>
+  </div>
+  {{if eq .current_uri "/rent"}}
+    <div style="background-color: #558b2f;">    
+      <a class="black-text" href="/rent"><h5>My Rent</h5></a>
+    </div>
+  {{else}}
+    <div>
+      <a class="black-text" href="/rent"><h5>My Rent</h5></a>
+    </div>
+  {{end}}
+  
+  {{if eq .current_uri "/payments"}}
+    <div style="background-color: #558b2f;">
+      <a class="black-text" href="/payments"><h5>My Payments</h5></a>
+    </div>
+  {{else}}
+    <div>
+      <a class="black-text" href="/payments"><h5>My Payments</h5></a>
+    </div>
+  {{end}}
+
+  {{if eq .current_uri "/agreement"}}
+    <div style="background-color: #558b2f;">
+      <a class="black-text" href="/agreement"><h5>My Rental Agreement</h5></a>
+    </div>
+  {{else}}
+    <div>
+      <a class="black-text" href="/agreement"><h5>My Rental Agreement</h5></a>
+    </div>
+  {{end}}
+{{end}}
