@@ -3,6 +3,8 @@ package models
 import (
 	"errors"
 	"time"
+
+	"github.com/manveru/faker"
 )
 
 // Owner simple blue-print
@@ -71,4 +73,16 @@ func GetOwners(limit int64, page int64) (*[]Owner, error) {
 // Update updates the owner
 func (o *Owner) Update() error {
 	return db.Debug().Model(&o).Where("id=?", o.ID).Update(&o).Error
+}
+
+// InsertFakeData creates fake data in database
+func InsertFakeData() error {
+	faker, err := faker.New("en")
+	if err != nil {
+		return errors.New("Errors creating fake data")
+	}
+
+	owner := NewOwner(faker.LastName(), faker.FirstName(), faker.SafeEmail(), faker.PhoneNumber(), "April 7, 1996", "Room", 21, 3)
+	owner.Create()
+	return nil
 }
