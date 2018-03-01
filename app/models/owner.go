@@ -86,3 +86,11 @@ func InsertFakeData() error {
 	owner.Create()
 	return nil
 }
+
+// GetOwnersByPropertyType gets owner by
+// type of property owned: `ROOM`, `HOUSE`
+func GetOwnersByPropertyType(propertyType string) ([]Owner, error) {
+	var owners []Owner
+	err := db.Debug().Model(&Owner{}).Order("id desc").Where("type_of_property_owned=?", propertyType).Scan(&owners).Error
+	return owners, err
+}
