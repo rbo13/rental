@@ -37,12 +37,22 @@
 <script type="text/javascript">
   $(document).ready(function() {
     $('#manageUnit').DataTable({
+      order: [0, 'asc'],
+      searching: true,
       columnDefs: [
         {
-          targets: [ 0, 1, 2 ],
-          className: 'mdl-data-table__cell--non-numeric'
+          orderSequence: ["desc", "asc"],
+          targets: [ 0, 1, 2, 3],
+          className: 'mdl-data-table__cell--non-numeric last'
         }
-      ]
+      ],
+      language: {
+        search: '_INPUT_',
+        searchPlaceholder: 'Search'
+      },
+      responsive: true,
+      scrollX: true,
+      scrollCollapse: true
     });
   });
 </script>
