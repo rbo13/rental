@@ -6,7 +6,7 @@
         <h5>{{.manageUnit}}</h5>
       </div>
       <div>
-        <table id="manageUnit" class="table-responsive">
+        <table id="manageUnit" class="mdl-data-table highlight" cellspacing="0" width="100%">
           <thead>
             <tr>
                 <th>Unit Number</th>
@@ -36,7 +36,14 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-      $('#manageUnit').DataTable();
+    $('#manageUnit').DataTable({
+      columnDefs: [
+        {
+          targets: [ 0, 1, 2 ],
+          className: 'mdl-data-table__cell--non-numeric'
+        }
+      ]
+    });
   });
 </script>
 {{end}}
