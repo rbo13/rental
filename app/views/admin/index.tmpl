@@ -6,7 +6,7 @@
         <form method="post" action="/admin/login">
           <div class="col s12 offset-l3 l6 card card-container">
             <div class="card-header grey lighten-3">
-              <h5 class="light-green-text text-darken-3">Admin Login</h5>
+              <h5 class="light-green-text text-darken-3">Login as Admin/Owner</h5>
             </div>
             <div class="card-content">
               {{if .csrf_token}}
@@ -26,6 +26,12 @@
             </div>
           </div>
         </form>
+        <p class="col s12 center">
+          <a class="modal-trigger" href="#forgotEmail">Forgot your password?</a>
+        </p>
+        <div class="col s12 row">
+          <a class="col s12 offset-l3 l6 btn btn-primary light-green darken-3 waves-effect waves-light" href="/admin/register">CREATE AN ACCOUNT</a>
+        </div>
       </div>
     </div>
   </div>
