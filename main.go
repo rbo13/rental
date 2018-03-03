@@ -78,6 +78,9 @@ func initializeRoutes(origRouter *gin.Engine) {
 
 	// Rent
 	router.GET("/rent", controllers.MyRentControllerIndex)
+
+	// Search Result
+	router.GET("/search/unit", controllers.SearchUnitIndex)
 	// Post Request
 	router.POST("/register", controllers.RegisterPostHandler)
 	router.POST("/login", controllers.LoginPostHandler)

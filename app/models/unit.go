@@ -61,3 +61,11 @@ func GetUnitByUnitNumber(unitNumber int64) (*Unit, error) {
 	err := db.Debug().Model(&unit).Where("unit_number=?", unitNumber).Scan(&unit).Error
 	return &unit, err
 }
+
+// GetUnitsByUnitType returns a list of unit
+// using the unit type
+func GetUnitsByUnitType(unitType string) ([]Unit, error) {
+	var units []Unit
+	err := db.Debug().Model(&Unit{}).Order("id desc").Where("unit_type=? and unit_status = 1", unitType).Scan(&units).Error
+	return units, err
+}
