@@ -31,6 +31,7 @@ func RenderTemplate(c *gin.Context, tmpl string, data gin.H, statusCode int) {
 	data["email"] = GetMyEmail(c)
 	data["fullName"] = GetMyFullname(c)
 	data["tenantID"] = GetMyTenantID(c)
+	data["is_admin"] = IsAdmin(c)
 	// data["is_verified"] = GetISVerified(c)
 	// data["timezone_offset"] = GetMyTimezoneOffset(c)
 	// data["paid_plan_id"] = GetMyPaidPlanID(c)
@@ -221,6 +222,21 @@ func GetMyAccountID(c *gin.Context) int64 {
 	}
 
 	return 0
+}
+
+// IsAdmin a boolean function that checks
+// if an account type is admin or not.
+func IsAdmin(c *gin.Context) bool {
+	session := sessions.Default(c)
+
+	if isAdmin := session.Get("is_admin"); isAdmin != nil {
+		isAdmin, ok := isAdmin.(bool)
+		if ok {
+			return isAdmin
+		}
+	}
+
+	return false
 }
 
 // GetMyFullname returns the fullname
