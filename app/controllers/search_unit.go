@@ -12,7 +12,6 @@ func SearchUnitIndex(c *gin.Context) {
 	log.Println("SearchUnitIndex")
 
 	unitType := c.Request.URL.Query().Get("unitType")
-	log.Println(unitType)
 
 	if (unitType != "Room") && (unitType != "House") {
 		SetFlashError(c, "Unit type not found")
@@ -28,6 +27,7 @@ func SearchUnitIndex(c *gin.Context) {
 		return
 	}
 	RenderHTML(c, gin.H{
-		"units": units,
+		"units":    units,
+		"unitType": unitType,
 	})
 }

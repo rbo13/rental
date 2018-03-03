@@ -2,8 +2,52 @@
 <div id="unit-result" class="section">
   <div class="row">
     <div class="container">
-      {{.units}}
+      <div>
+        <h5>Search Results for: {{.unitType}}</h5>
+      </div>
+      <div>
+        <table id="unitResult" class="mdl-data-table highlight" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+                <th>Unit Number</th>
+                <th>Unit Type</th>
+                <th>Status</th>
+                <th>Price</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {{range $unit := .units}}
+              <tr>
+                <td>{{$unit.UnitNumber}}</td>
+                <td>{{$unit.UnitType}}</td>
+                <td>{{$unit.UnitStatus | convertStatusToString}}</td>
+                <td>PHP {{$unit.UnitPrice}}</td>
+              </tr>
+            {{end}}
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#unitResult').DataTable({
+      order: [0, 'asc'],
+      searching: false,
+      columnDefs: [
+        {
+          orderSequence: ["desc", "asc"],
+          targets: [ 0, 1, 2, 3],
+          className: 'mdl-data-table__cell--non-numeric last'
+        }
+      ],
+      responsive: true,
+      scrollX: true,
+      scrollCollapse: true
+    });
+  });
+</script>
 {{end}}
