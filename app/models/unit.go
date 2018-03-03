@@ -53,3 +53,11 @@ func GetUnits() ([]Unit, error) {
 	err = db.Debug().Model(&Unit{}).Order("id desc").Scan(&units).Error
 	return units, err
 }
+
+// GetUnitByUnitNumber returns a unit
+// specified by a unit number
+func GetUnitByUnitNumber(unitNumber int64) (*Unit, error) {
+	var unit Unit
+	err := db.Debug().Model(&unit).Where("unit_number=?", unitNumber).Scan(&unit).Error
+	return &unit, err
+}
