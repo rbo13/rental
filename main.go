@@ -84,6 +84,7 @@ func initializeRoutes(origRouter *gin.Engine) {
 		admin.GET("/", controllers.AdminIndex)
 		admin.GET("/register", controllers.AdminRegisterIndex)
 		admin.POST("/register", controllers.AdminRegisterHandler)
+		admin.POST("/login", controllers.AdminLoginHandler)
 		admin.GET("/home", controllers.AdminHomeIndex)
 		admin.GET("/generate/user", controllers.AdminGenerateUser)
 		admin.GET("/list/owner", controllers.AdminShowListOfOwnerByType)

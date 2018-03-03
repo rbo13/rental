@@ -10,6 +10,12 @@ import (
 func AdminHomeIndex(c *gin.Context) {
 	log.Println("AdminHomeIndex")
 
+	if !IsLogin(c) {
+		SetFlashError(c, "Authentication is required")
+		Redirect(c, "/admin")
+		return
+	}
+
 	RenderHTML(c, gin.H{
 		"adminHome": "Admin Home",
 	})

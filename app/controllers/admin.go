@@ -61,3 +61,26 @@ func AdminRegisterHandler(c *gin.Context) {
 	SetFlashSuccess(c, "Successfully registered")
 	Redirect(c, "/admin")
 }
+
+// AdminLoginHandler admin login handler
+func AdminLoginHandler(c *gin.Context) {
+	log.Println("AdminLoginHandler")
+
+	if IsLogin(c) {
+		Redirect(c, "/home")
+	}
+
+	emailAddress := c.PostForm("email")
+	password := c.PostForm("password")
+	account, err := models.LoginUser(emailAddress, password)
+
+	if err != nil {
+		SetFlashError(c, err.Error())
+		Redirect(c, "/admin/register")
+		return
+	}
+
+	SetAuth(c, *account)
+	SetFlashSuccess(c, "Successfully loggedd in")
+	Redirect(c, "/admin/home")
+}

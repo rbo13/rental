@@ -89,6 +89,7 @@ func SetAuth(c *gin.Context, account models.Account) {
 	session := sessions.Default(c)
 	session.Set("account_id", account.ID)
 	session.Set("email", account.EmailAddress)
+	session.Set("is_admin", account.IsAdmin)
 	session.Set("is_login", 1)
 	session.Save()
 }
@@ -98,6 +99,7 @@ func ClearAuth(c *gin.Context) {
 	session := sessions.Default(c)
 	session.Delete("is_login")
 	session.Delete("account_id")
+	session.Delete("is_admin")
 	session.Delete("email")
 
 	session.Save()
