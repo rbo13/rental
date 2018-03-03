@@ -11,6 +11,11 @@ import (
 func AdminIndex(c *gin.Context) {
 	log.Println("AdminIndex")
 
+	if IsLogin(c) {
+		Redirect(c, "/admin/home")
+		return
+	}
+
 	RenderHTML(c, gin.H{
 		"admin": "Admin Page",
 	})

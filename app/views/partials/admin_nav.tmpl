@@ -6,14 +6,14 @@
       {{if .is_login}}
         <li><a href="/home" class="brand-logo no-abs">RV Home Rental</a></li>
         <li class="ml-20"><a href="/catalog">Catalog</a></li>
-        <li><a href="/unit">Unit</a></li>
+        <li><a class="dropdown-button" href="#!" data-activates="unitSelection">Unit <i class="material-icons right">arrow_drop_down</i></a> </a></li>
         <li><a href="/tenant">Tenant</a></li>
         <li><a href="/maintenance">Maintenance</a></li>
         <li><a href="/report">Report</a></li>
       {{else}}
         <li><a href="/home" class="brand-logo no-abs">RV Home Rental</a></li>
         <li class="ml-20"><a href="/catalog">Catalog</a></li>
-        <li><a href="/unit">Unit</a></li>
+        <li><a class="dropdown-button" href="#!" data-activates="unitSelection">Unit <i class="material-icons right">arrow_drop_down</i></a> </a></li>
         <li><a href="/tenant">Tenant</a></li>
         <li><a href="/maintenance">Maintenance</a></li>
         <li><a href="/report">Report</a></li>
@@ -40,4 +40,9 @@
   <li class="divider"></li>
   <li><a href="/logout">Logout</a></li>
 </ul>
+<ul id="unitSelection" class="dropdown-content">
+  <li><a href="/manage/unit">Manage Units</a></li>
+  <li><a href="/admin/unit">Add a Unit</a></li>
+</ul>
+
 {{end}}

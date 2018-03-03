@@ -5,7 +5,7 @@ import "time"
 // Unit ...
 type Unit struct {
 	ID         int64     `json:"id" gorm:"AUTO_INCREMENT"`
-	TenantID   int64     `json:"tenant_id" gorm:"index"`
+	OwnerID    int64     `json:"owner_id" gorm:"index"`
 	UnitPrice  int64     `json:"unit_price"`
 	UnitType   string    `json:"unit_type"`
 	UnitStatus bool      `json:"unit_status"`
@@ -19,9 +19,9 @@ func (Unit) TableName() string {
 }
 
 // NewUnit unit constructor
-func NewUnit(tenantID, unitPrice int64, unitType string, unitStatus bool) *Unit {
+func NewUnit(ownerID, unitPrice int64, unitType string, unitStatus bool) *Unit {
 	return &Unit{
-		TenantID:   tenantID,
+		OwnerID:    ownerID,
 		UnitPrice:  unitPrice,
 		UnitType:   unitType,
 		UnitStatus: unitStatus,
@@ -37,9 +37,9 @@ func (u *Unit) Create() error {
 	return err
 }
 
-// GetUnitByTenantID gets unit by the tenant id
-func GetUnitByTenantID(tenantID int64) (*Unit, error) {
+// GetUnitByOwnerID gets unit by the tenant id
+func GetUnitByOwnerID(ownerID int64) (*Unit, error) {
 	var unit Unit
-	err := db.Debug().Model(&unit).Where("tenant_id=?", tenantID).Scan(&unit).Error
+	err := db.Debug().Model(&unit).Where("owner_id=?", ownerID).Scan(&unit).Error
 	return &unit, err
 }

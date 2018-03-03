@@ -1,0 +1,39 @@
+{{define "content"}}
+<div id="add-unit" class="section">
+  <div class="row">
+    <div class="container">
+      <form method="post" action="/admin/add/unit">
+          <div class="col s12 offset-l3 l6 card card-container">
+            <div class="card-header grey lighten-3">
+              <h5 class="light-green-text text-darken-3">{{.addUnit}}</h5>
+            </div>
+            <div class="card-content">
+              {{if .csrf_token}}
+                <input type="hidden" name="csrf_token" value="{{.csrf_token}}" />
+              {{end}}
+              <div class="input-field col s12">
+                <select name="unitType">
+                  <option value="" disabled selected>Choose your option</option>
+                  <option value="Room">Room</option>
+                  <option value="House">House</option>
+                </select>
+                <label>Select Type</label>
+              </div>
+              <div class="input-field col s12">
+                <input id="unitNumber" name="unitNumber" type="text" class="validate" required>
+                <label for="unitNumber">Unit Number</label>
+              </div>
+              <div class="input-field col s12">
+                <input id="unitPrice" name="unitPrice" type="text" class="validate" required>
+                <label for="unitPrice">Unit Price</label>
+              </div>
+            </div>
+            <div class="card-action grey lighten-4">
+              <button type="submit" class="btn btn-success light-green darken-3 waves-effect waves-light">Add</button>
+            </div>
+          </div>
+        </form>
+    </div>
+  </div>
+</div>
+{{end}}
