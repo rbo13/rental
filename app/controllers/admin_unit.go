@@ -2,7 +2,9 @@ package controllers
 
 import (
 	"log"
+	"strconv"
 
+	"github.com/whaangbuu/home-rental/app/models"
 	"gopkg.in/gin-gonic/gin.v1"
 )
 
@@ -20,12 +22,20 @@ func AdminUnitAddHandler(c *gin.Context) {
 	log.Println("AdminUnitAddHandler")
 
 	unitType := c.PostForm("unitType")
-	unitNumber := c.PostForm("unitNumber")
-	unitPrice := c.PostForm("unitPrice")
+	unitNumberStr := c.PostForm("unitNumber")
+	unitPriceStr := c.PostForm("unitPrice")
+	ownerID := GetMyAccountID(c)
 
-	log.Println(unitType)
-	log.Println(unitNumber)
-	log.Println(unitPrice)
+	unitPrice, parseErr := strconv.ParseInt(unitPriceStr, 10, 64)
+	unitNumber, err := strconv.ParseInt(unitNumberStr, 10, 64)
+	if parseErr != nil && err != nil {
+		SetFlashError(c, "ERROR PARSING")
+		Redirect(c, "/admin")
+		return
+	}
+
+	unit := models.NewUnit(ownerID, unitPrice, unitNumber, unitType, true)
+	unit.Create()
 
 	SetFlashSuccess(c, "Unit successfully added")
 	Redirect(c, "/admin/home")

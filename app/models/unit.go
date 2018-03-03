@@ -8,6 +8,7 @@ type Unit struct {
 	OwnerID    int64     `json:"owner_id" gorm:"index"`
 	UnitPrice  int64     `json:"unit_price"`
 	UnitType   string    `json:"unit_type"`
+	UnitNumber int64     `json:"unit_number"`
 	UnitStatus bool      `json:"unit_status"`
 	CreatedAt  time.Time `json:"created_at"`
 	UpdatedAt  time.Time `json:"updated_at"`
@@ -19,10 +20,11 @@ func (Unit) TableName() string {
 }
 
 // NewUnit unit constructor
-func NewUnit(ownerID, unitPrice int64, unitType string, unitStatus bool) *Unit {
+func NewUnit(ownerID, unitPrice, unitNumber int64, unitType string, unitStatus bool) *Unit {
 	return &Unit{
 		OwnerID:    ownerID,
 		UnitPrice:  unitPrice,
+		UnitNumber: unitNumber,
 		UnitType:   unitType,
 		UnitStatus: unitStatus,
 	}
