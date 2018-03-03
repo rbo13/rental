@@ -1,0 +1,48 @@
+{{define "content"}}
+<div id="manage-unit" class="section">
+  <div class="row">
+    <div class="container">
+      <div>
+        <h5>{{.manageUnit}}</h5>
+      </div>
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s12 l3">
+            <i class="material-icons prefix" style="top: 10px; right: 140px;">search</i>
+            <input id="unitNumber" type="text" name="unitNumber" class="validate" style="text-indent: 26px;">
+            <label for="unitNumber" style="text-indent: 26px;">Unit Number</label>
+          </div>
+          <div class="input-field col s12 l3">
+            <button type="submit" class="btn btn-success light-green darken-3 waves-effect waves-light">Search</button>
+          </div>
+        </div>
+      </form>
+      <div>
+        <table class="table-responsive">
+          <thead>
+            <tr>
+                <th>Unit Number</th>
+                <th>Unit Type</th>
+                <th>Status</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {{range $unit := .units}}
+              <tr>
+                <td>{{$unit.UnitNumber}}</td>
+                <td>{{$unit.UnitType}}</td>
+                <td>{{$unit.UnitStatus | convertStatusToString}}</td>
+                <td>PHP {{$unit.UnitPrice}}</td>
+                <td><a href="/admin/unit/edit/{{$unit.ID}}">Edit</a></td>
+              </tr>
+            {{end}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{{end}}

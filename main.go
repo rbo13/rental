@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
 
@@ -9,9 +10,11 @@ import (
 	"github.com/gin-contrib/sessions"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/justinas/nosurf"
+	"github.com/leekchan/gtf"
 	"github.com/whaangbuu/home-rental/app/controllers"
 	"github.com/whaangbuu/home-rental/app/libs/ezgintemplate"
 	"github.com/whaangbuu/home-rental/app/models"
+	"github.com/whaangbuu/home-rental/tmplfunc"
 	"gopkg.in/gin-gonic/gin.v1"
 )
 
@@ -38,10 +41,14 @@ func main() {
 	render.Ext = ".tmpl"
 	render.Debug = true
 	// TODO:: implet template functions here
-	// funcMap := template.FuncMap{}
+	funcMap := template.FuncMap{
+		"convertStatusToString": tmplfunc.ConvertStatusToString,
+	}
 
 	// Inject our template func
-	// gtf.Inject(funcMap)
+	gtf.Inject(funcMap)
+
+	render.TemplateFuncMap = funcMap
 	router.HTMLRender = render.Init()
 
 	initializeRoutes(router)
@@ -89,6 +96,7 @@ func initializeRoutes(origRouter *gin.Engine) {
 		admin.GET("/generate/user", controllers.AdminGenerateUser)
 		admin.GET("/list/owner", controllers.AdminShowListOfOwnerByType)
 		admin.GET("/unit", controllers.AdminUnitIndex)
+		admin.GET("/manage", controllers.AdminManageIndex)
 		admin.POST("/add/unit", controllers.AdminUnitAddHandler)
 	}
 }

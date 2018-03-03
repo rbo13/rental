@@ -45,3 +45,11 @@ func GetUnitByOwnerID(ownerID int64) (*Unit, error) {
 	err := db.Debug().Model(&unit).Where("owner_id=?", ownerID).Scan(&unit).Error
 	return &unit, err
 }
+
+// GetUnits gets all the unit
+func GetUnits() ([]Unit, error) {
+	var units []Unit
+	var err error
+	err = db.Debug().Model(&Unit{}).Order("id desc").Scan(&units).Error
+	return units, err
+}
