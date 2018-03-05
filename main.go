@@ -81,6 +81,7 @@ func initializeRoutes(origRouter *gin.Engine) {
 
 	// Search Result
 	router.GET("/search/unit", controllers.SearchUnitIndex)
+	router.GET("/unit/info/:unit_id", controllers.UnitInfoIndex)
 	// Post Request
 	router.POST("/register", controllers.RegisterPostHandler)
 	router.POST("/login", controllers.LoginPostHandler)

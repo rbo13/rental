@@ -13,6 +13,7 @@
                 <th>Unit Type</th>
                 <th>Status</th>
                 <th>Price</th>
+                <th>Action</th>
             </tr>
           </thead>
 
@@ -23,6 +24,7 @@
                 <td>{{$unit.UnitType}}</td>
                 <td>{{$unit.UnitStatus | convertStatusToString}}</td>
                 <td>PHP {{$unit.UnitPrice}}</td>
+                <td><a href="/unit/info/{{$unit.ID}}">See</a></td>
               </tr>
             {{end}}
           </tbody>
