@@ -40,5 +40,6 @@ func UnitInfoIndex(c *gin.Context) {
 
 	RenderHTML(c, gin.H{
 		"unitInfo": "Unit Information",
+		"ownerID":  unit.OwnerID,
 	})
 }
