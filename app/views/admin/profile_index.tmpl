@@ -1,0 +1,44 @@
+{{define "content"}}
+<div id="admin-profile" class="section">
+  <div class="container">
+    <div class="row">
+      <div>
+        <h5>{{.adminProfile}}</h5>
+      </div>
+      <div class="col s12 l12">
+        <form action="/admin/update/profile" method="post">
+          <div class="input-field col s12">
+            <input id="email" name="email" type="email" class="validate" required value="{{.account.EmailAddress}}">
+            <label for="email">Email Address</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="lastName" name="lastName" type="text" class="validate" required>
+            <label for="lastName">Last Name</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="firstName" name="firstName" type="text" class="validate" required>
+            <label for="firstName">First Name</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="phoneNumber" name="phoneNumber" type="text" class="validate" required>
+            <label for="phoneNumber">Phone Number</label>
+          </div>
+          <div class="input-field col s12">
+            <select name="unitType">
+              <option value="" disabled selected>Choose your option</option>
+              <option value="Room">Room</option>
+              <option value="House">House</option>
+            </select>
+            <label>Select Type</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="numberOfProperty" name="numberOfProperty" type="text" class="validate" required>
+            <label for="numberOfProperty">Number of Property Owned</label>
+          </div>
+          <button type="submit" class="btn btn-primary light-green darken-3 waves-effect waves-light">Update Profile</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{end}}

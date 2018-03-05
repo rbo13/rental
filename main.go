@@ -97,10 +97,12 @@ func initializeRoutes(origRouter *gin.Engine) {
 		admin.POST("/register", controllers.AdminRegisterHandler)
 		admin.POST("/login", controllers.AdminLoginHandler)
 		admin.GET("/home", controllers.AdminHomeIndex)
+		admin.GET("/profile", controllers.AdminProfileIndex)
 		admin.GET("/generate/user", controllers.AdminGenerateUser)
 		admin.GET("/list/owner", controllers.AdminShowListOfOwnerByType)
 		admin.GET("/unit", controllers.AdminUnitIndex)
 		admin.GET("/manage", controllers.AdminManageIndex)
 		admin.POST("/add/unit", controllers.AdminUnitAddHandler)
+		admin.POST("/update/profile", controllers.AdminUpdateProfileHandler)
 	}
 }

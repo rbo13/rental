@@ -3,8 +3,6 @@ package models
 import (
 	"errors"
 	"time"
-
-	"github.com/manveru/faker"
 )
 
 // Owner simple blue-print
@@ -30,16 +28,13 @@ func (Owner) TableName() string {
 }
 
 // NewOwner constructor
-func NewOwner(lastName, firstName, emailAddress, phoneNumber, birthDate, typeOfPropertyOwned string, age int, noOfPropertyOwned int64) *Owner {
+func NewOwner(lastName, firstName, emailAddress, phoneNumber, birthDate string) *Owner {
 	return &Owner{
-		LastName:            lastName,
-		FirstName:           firstName,
-		EmailAddress:        emailAddress,
-		PhoneNumber:         phoneNumber,
-		Birthdate:           birthDate,
-		TypeOfPropertyOwned: typeOfPropertyOwned,
-		Age:                 age,
-		NoOfPropertyOwned:   noOfPropertyOwned,
+		LastName:     lastName,
+		FirstName:    firstName,
+		EmailAddress: emailAddress,
+		PhoneNumber:  phoneNumber,
+		Birthdate:    birthDate,
 	}
 }
 
@@ -75,17 +70,28 @@ func (o *Owner) Update() error {
 	return db.Debug().Model(&o).Where("id=?", o.ID).Update(&o).Error
 }
 
-// InsertFakeData creates fake data in database
-func InsertFakeData() error {
-	faker, err := faker.New("en")
-	if err != nil {
-		return errors.New("Errors creating fake data")
+// GetOwnerByEmailAddress returns an owner
+// using the email address.
+func GetOwnerByEmailAddress(emailAddress string) (*Owner, error) {
+	var owner Owner
+	if emailAddress == "" {
+		return nil, errors.New("Email is required")
 	}
-
-	owner := NewOwner(faker.LastName(), faker.FirstName(), faker.SafeEmail(), faker.PhoneNumber(), "April 7, 1996", "Room", 21, 3)
-	owner.Create()
-	return nil
+	err := db.Debug().Model(&owner).Where("email_address=?", emailAddress).Scan(&owner).Error
+	return &owner, err
 }
+
+// InsertFakeData creates fake data in database
+// func InsertFakeData() error {
+// 	faker, err := faker.New("en")
+// 	if err != nil {
+// 		return errors.New("Errors creating fake data")
+// 	}
+
+// 	owner := NewOwner(faker.LastName(), faker.FirstName(), faker.SafeEmail(), faker.PhoneNumber(), "April 7, 1996", "Room", 21, 3)
+// 	owner.Create()
+// 	return nil
+// }
 
 // GetOwnersByPropertyType gets owner by
 // type of property owned: `ROOM`, `HOUSE`

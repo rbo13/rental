@@ -11,7 +11,7 @@ import (
 func AdminGenerateUser(c *gin.Context) {
 	log.Println("AdminGenerate")
 	for index := 0; index < 5; index++ {
-		models.InsertFakeData()
+		// models.InsertFakeData()
 	}
 
 	SetFlashInfo(c, "User generated")
