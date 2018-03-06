@@ -24,7 +24,7 @@ func AdminUnitAddHandler(c *gin.Context) {
 	unitType := c.PostForm("unitType")
 	unitNumberStr := c.PostForm("unitNumber")
 	unitPriceStr := c.PostForm("unitPrice")
-	ownerID := GetMyAccountID(c)
+	ownerID := GetMyOwnerID(c)
 
 	unitPrice, parseErr := strconv.ParseInt(unitPriceStr, 10, 64)
 	unitNumber, err := strconv.ParseInt(unitNumberStr, 10, 64)

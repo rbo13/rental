@@ -32,6 +32,7 @@ func RenderTemplate(c *gin.Context, tmpl string, data gin.H, statusCode int) {
 	data["fullName"] = GetMyFullname(c)
 	data["tenantID"] = GetMyTenantID(c)
 	data["is_admin"] = IsAdmin(c)
+	data["ownerID"] = GetMyOwnerID(c)
 	// data["is_verified"] = GetISVerified(c)
 	// data["timezone_offset"] = GetMyTimezoneOffset(c)
 	// data["paid_plan_id"] = GetMyPaidPlanID(c)
@@ -264,6 +265,24 @@ func GetMyTenantID(c *gin.Context) int64 {
 		}
 		return tenant.ID
 	}
+	return 0
+}
+
+// GetMyOwnerID returns an owner ID
+func GetMyOwnerID(c *gin.Context) int64 {
+	emailAddress := GetMyEmail(c)
+	if IsLogin(c) {
+		owner, err := models.GetOwnerByEmailAddress(emailAddress)
+		if err != nil {
+			log.Println(err)
+			return 0
+		}
+		if owner != nil {
+			return owner.ID
+		}
+		return 0
+	}
+
 	return 0
 }
 

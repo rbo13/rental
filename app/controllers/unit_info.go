@@ -35,11 +35,14 @@ func UnitInfoIndex(c *gin.Context) {
 		Redirect(c, "/home")
 		return
 	}
-
-	log.Print(unit.OwnerID)
+	owner, err := models.GetOwnerByID(unit.OwnerID)
+	ownerFullName := owner.FirstName + " " + owner.LastName
 
 	RenderHTML(c, gin.H{
-		"unitInfo": "Unit Information",
-		"ownerID":  unit.OwnerID,
+		"unitInfo":      "Unit Information",
+		"ownerID":       unit.OwnerID,
+		"unit":          unit,
+		"owner":         owner,
+		"ownerFullName": ownerFullName,
 	})
 }

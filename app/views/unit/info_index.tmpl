@@ -2,7 +2,28 @@
 <div id="unit-info" class="section">
   <div class="container">
     <div class="row">
-      {{.unitInfo}} {{.ownerID}}
+      <h5>{{.unitInfo}}:</h5>
+      <div class="card small">
+        <div class="card-header">
+          <h5>Unit Number: {{.unit.UnitNumber}}</h5>
+        </div>
+        <div class="card-content">
+          <div style="font-size: 22px;">
+            Unit Type: <strong>{{.unit.UnitType}}</strong>
+          </div>
+          <div style="font-size: 22px;">
+            Owned By: <strong>{{.ownerFullName}}</strong>
+          </div>
+          <div style="font-size: 22px;">
+            Unit Price: <strong>PHP {{.unit.UnitPrice | intcomma}} </strong>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div>
+            <button type="submit" class="btn btn-primary light-green darken-3 waves-effect waves-light">Request to Rent</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

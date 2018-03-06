@@ -146,6 +146,16 @@ nav > .nav-header > h1 {
   border-bottom: 1px solid rgba(160,160,160,0.2);
   padding: 16px 24px;
 }
+
+.card > .card-footer {
+  position: absolute;
+  background-color: inherit;
+  border-top: 1px solid rgba(160,160,160,0.2);
+  padding: 16px 24px;
+  bottom: 16px;
+  width: 100%;
+}
+
 .card.card-container > .card-content {
   overflow: hidden;
 }
