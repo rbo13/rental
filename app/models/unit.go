@@ -77,3 +77,11 @@ func GetUnitsByUnitType(unitType string) ([]Unit, error) {
 	err := db.Debug().Model(&Unit{}).Order("id desc").Where("unit_type=? and unit_status = 1", unitType).Scan(&units).Error
 	return units, err
 }
+
+// GetUnitsByOwnerID returns a list of unit
+// using the owner ID
+func GetUnitsByOwnerID(ownerID int64) ([]Unit, error) {
+	var units []Unit
+	err := db.Debug().Model(&Unit{}).Order("id desc").Where("owner_id=? and unit_status = 1", ownerID).Scan(&units).Error
+	return units, err
+}

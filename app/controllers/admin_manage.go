@@ -11,7 +11,8 @@ import (
 func AdminManageIndex(c *gin.Context) {
 	log.Println("AdminManageIndex")
 
-	units, err := models.GetUnits()
+	ownerID := GetMyOwnerID(c)
+	units, err := models.GetUnitsByOwnerID(ownerID)
 
 	if err != nil {
 		SetFlashError(c, "Error getting units")

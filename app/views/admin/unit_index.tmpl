@@ -12,12 +12,9 @@
                 <input type="hidden" name="csrf_token" value="{{.csrf_token}}" />
               {{end}}
               <div class="input-field col s12">
-                <select name="unitType">
-                  <option value="" disabled selected>Choose your option</option>
-                  <option value="Room">Room</option>
-                  <option value="House">House</option>
-                </select>
-                <label>Select Type</label>
+                <div class="input-field col s12">
+                  <input id="unitType" name="unitType" type="text" class="validate" value="{{.unitOwned}}" readonly="true">
+                </div>
               </div>
               <div class="input-field col s12">
                 <input id="unitNumber" name="unitNumber" type="text" class="validate" required>
