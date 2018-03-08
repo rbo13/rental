@@ -105,6 +105,7 @@ func initializeRoutes(origRouter *gin.Engine) {
 		admin.GET("/list/owner", controllers.AdminShowListOfOwnerByType)
 		admin.GET("/unit", controllers.AdminUnitIndex)
 		admin.GET("/manage", controllers.AdminManageIndex)
+		admin.GET("/all/tenants", controllers.ListTenantsIndex)
 		admin.POST("/add/unit", controllers.AdminUnitAddHandler)
 		admin.POST("/update/profile", controllers.AdminUpdateProfileHandler)
 	}

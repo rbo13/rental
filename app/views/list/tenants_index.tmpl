@@ -1,0 +1,36 @@
+{{define "content"}}
+<div id="admin-list" class="section">
+  <div class="container">
+  <div class="row">
+      <h5>{{.tenantsList}}</h5>
+      <div>
+        <table id="viewAllTenants" class="mdl-data-table highlight" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+                <th>ID</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Phone Number</th>
+                <th>Birthdate</th>
+                <th>Gender</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {{range $tenant := .tenants}}
+              <tr>
+                <td>{{$tenant.ID}}</td>
+                <td>{{$tenant.LastName}}</td>
+                <td>{{$tenant.FirstName}}</td>
+                <td>{{$tenant.PhoneNumber}}</td>
+                <td>{{$tenant.Birthdate}}</td>
+                <td>{{$tenant.Gender}}</td>
+              </tr>
+            {{end}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{{end}}

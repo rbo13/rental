@@ -1,6 +1,9 @@
 package models
 
-import "time"
+import (
+	"log"
+	"time"
+)
 
 // Tenant object
 type Tenant struct {
@@ -42,6 +45,17 @@ func GetTenants(limit int64, page int64) ([]Tenant, error) {
 	st := page * limit
 	err = db.Debug().Model(&Tenant{}).Order("id desc").Limit(int(limit)).Offset(int(st)).Scan(&tenants).Error
 	return tenants, err
+}
+
+// GetTenantsUsingStoredProcedure ...
+func GetTenantsUsingStoredProcedure() ([]Tenant, error) {
+	var tenants []Tenant
+	err := db.Debug().Raw("CALL `rental`.`GetAllTenants`()").Scan(&tenants).Error
+	if err != nil {
+		log.Printf("ERROR DUE TO: %v", err)
+		return nil, err
+	}
+	return tenants, nil
 }
 
 // NewTenant contructor
