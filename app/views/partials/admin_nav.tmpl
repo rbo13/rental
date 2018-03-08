@@ -6,15 +6,17 @@
       {{if .is_login}}
         <li><a href="/home" class="brand-logo no-abs">RV Home Rental</a></li>
         <li class="ml-20"><a href="/catalog">Catalog</a></li>
-        <li><a class="dropdown-button" href="#!" data-activates="unitSelection">Unit <i class="material-icons right">arrow_drop_down</i></a> </a></li>
-        <li><a href="/tenant">Tenant</a></li>
+        <li>
+          <a class="dropdown-button" href="#!" data-activates="unitSelection">Unit <i class="material-icons right">arrow_drop_down</i></a>
+        </li>
+        <li><a class="dropdown-button" href="#!" data-activates="tenantSelection">Tenant <i class="material-icons right">arrow_drop_down</i> </a></li>
         <li><a href="/maintenance">Maintenance</a></li>
         <li><a href="/report">Report</a></li>
       {{else}}
         <li><a href="/home" class="brand-logo no-abs">RV Home Rental</a></li>
         <li class="ml-20"><a href="/catalog">Catalog</a></li>
-        <li><a class="dropdown-button" href="#!" data-activates="unitSelection">Unit <i class="material-icons right">arrow_drop_down</i></a> </a></li>
-        <li><a href="/tenant">Tenant</a></li>
+        <li><a class="dropdown-button" href="#!" data-activates="unitSelection">Unit <i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-button" href="#!" data-activates="tenantSelection">Tenant <i class="material-icons right">arrow_drop_down</i> </a></li>
         <li><a href="/maintenance">Maintenance</a></li>
         <li><a href="/report">Report</a></li>
       {{end}}
@@ -44,5 +46,11 @@
   <li><a href="/admin/manage">Manage Units</a></li>
   <li><a href="/admin/unit">Add a Unit</a></li>
 </ul>
+
+<ul id="tenantSelection" class="dropdown-content">
+  <li><a href="/admin/all/tenants">View All Tenants</a></li>
+  <li><a href="/admin/add/tenant">Add a Tenant</a></li>
+</ul>
+
 
 {{end}}
