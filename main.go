@@ -89,6 +89,9 @@ func initializeRoutes(origRouter *gin.Engine) {
 	router.POST("/update/phone", controllers.ProfileUpdatePhoneNumberHandler)
 	router.POST("/update/email", controllers.ProfileUpdateEmailHandler)
 
+	// Request to Rent
+	router.POST("/request/rent/:unit_id", controllers.RequestRentHandler)
+
 	// Admin
 	admin := origRouter.Group("/admin")
 	{

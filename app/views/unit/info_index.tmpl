@@ -7,22 +7,24 @@
         <div class="card-header">
           <h5>Unit Number: {{.unit.UnitNumber}}</h5>
         </div>
-        <div class="card-content">
-          <div style="font-size: 22px;">
-            Unit Type: <strong>{{.unit.UnitType}}</strong>
+        <form action="/request/rent/{{.unit.ID}}" method="post">
+          <div class="card-content">
+            <div style="font-size: 22px;">
+              Unit Type: <strong>{{.unit.UnitType}}</strong>
+            </div>
+            <div style="font-size: 22px;">
+              Owned By: <strong>{{.ownerFullName}}</strong>
+            </div>
+            <div style="font-size: 22px;">
+              Unit Price: <strong>PHP {{.unit.UnitPrice | intcomma}} </strong>
+            </div>
           </div>
-          <div style="font-size: 22px;">
-            Owned By: <strong>{{.ownerFullName}}</strong>
+          <div class="card-footer">
+            <div style="margin-left: 22px;">
+              <button type="submit" class="btn btn-primary light-green darken-3 waves-effect waves-light">Request to Rent</button>
+            </div>
           </div>
-          <div style="font-size: 22px;">
-            Unit Price: <strong>PHP {{.unit.UnitPrice | intcomma}} </strong>
-          </div>
-        </div>
-        <div class="card-footer">
-          <div>
-            <button type="submit" class="btn btn-primary light-green darken-3 waves-effect waves-light">Request to Rent</button>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>

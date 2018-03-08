@@ -33,6 +33,11 @@ func RenderTemplate(c *gin.Context, tmpl string, data gin.H, statusCode int) {
 	data["tenantID"] = GetMyTenantID(c)
 	data["is_admin"] = IsAdmin(c)
 	data["ownerID"] = GetMyOwnerID(c)
+
+	if !IsAdmin(c) {
+		data["tenantFirstname"] = GetMyFirstName(c)
+		data["tenantLastname"] = GetMyLastName(c)
+	}
 	// data["is_verified"] = GetISVerified(c)
 	// data["timezone_offset"] = GetMyTimezoneOffset(c)
 	// data["paid_plan_id"] = GetMyPaidPlanID(c)
@@ -250,6 +255,34 @@ func GetMyFullname(c *gin.Context) string {
 			return ""
 		}
 		return tenant.FirstName + " " + tenant.LastName
+	}
+	return ""
+}
+
+// GetMyFirstName returns the firstname
+func GetMyFirstName(c *gin.Context) string {
+	if IsLogin(c) {
+		accountID := GetMyAccountID(c)
+		tenant, err := models.GetTenantByAccountID(accountID)
+		if err != nil {
+			log.Println(err)
+			return ""
+		}
+		return tenant.FirstName
+	}
+	return ""
+}
+
+// GetMyLastName returns the lastname
+func GetMyLastName(c *gin.Context) string {
+	if IsLogin(c) {
+		accountID := GetMyAccountID(c)
+		tenant, err := models.GetTenantByAccountID(accountID)
+		if err != nil {
+			log.Println(err)
+			return ""
+		}
+		return tenant.LastName
 	}
 	return ""
 }

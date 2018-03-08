@@ -25,6 +25,22 @@ $(document).ready(function() {
     closeOnSelect: false
   });
 
+  $('#homeStartDate').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 101, // Creates a dropdown of 15 years to control year,
+    today: 'Today',
+    clear: 'Clear',
+    close: 'Ok',
+    closeOnSelect: false // Close upon selecting a date,
+  });
+
+  $('#homeEndDate').pickadate({
+    selectMonths: true,
+    selectYears: 15,
+    today: false,
+    closeOnSelect: false
+  });
+
   $('#birthDate').pickadate({
     selectMonths: true,
     selectYears: 15,

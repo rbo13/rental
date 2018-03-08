@@ -128,4 +128,6 @@ func MigrateTables() {
 	db.AutoMigrate(&Unit{})
 	log.Print("Owner")
 	db.AutoMigrate(&Owner{})
+	log.Print("TenantRecord")
+	db.AutoMigrate(&TenantRecord{})
 }
