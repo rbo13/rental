@@ -43,6 +43,7 @@ func main() {
 	// TODO:: implet template functions here
 	funcMap := template.FuncMap{
 		"convertStatusToString": tmplfunc.ConvertStatusToString,
+		"sanitizeRequest":       tmplfunc.SanitizeRequest,
 	}
 
 	// Inject our template func
@@ -105,7 +106,8 @@ func initializeRoutes(origRouter *gin.Engine) {
 		admin.GET("/list/owner", controllers.AdminShowListOfOwnerByType)
 		admin.GET("/unit", controllers.AdminUnitIndex)
 		admin.GET("/manage", controllers.AdminManageIndex)
-		admin.GET("/all/tenants", controllers.ListTenantsIndex)
+		admin.GET("/all/tenants", controllers.ListTenantsIndex) // This route handels the stored procedure
+		admin.GET("/view/request", controllers.ViewRequestIndex)
 		admin.POST("/add/unit", controllers.AdminUnitAddHandler)
 		admin.POST("/update/profile", controllers.AdminUpdateProfileHandler)
 	}

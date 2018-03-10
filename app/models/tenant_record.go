@@ -45,3 +45,17 @@ func GetTenantRecordByID(id int64) (*TenantRecord, error) {
 	err := db.Debug().Model(&tr).Where("id=?", id).Scan(&tr).Error
 	return &tr, err
 }
+
+// GetTenantRecordByOwnerID gets by owner id
+func GetTenantRecordByOwnerID(ownerID int64) (*TenantRecord, error) {
+	var tr TenantRecord
+	err := db.Debug().Model(&tr).Where("owner_id=? and tenant_status=0", ownerID).Scan(&tr).Error
+	return &tr, err
+}
+
+// GetRecordsByOwnerID returns an arry of records
+func GetRecordsByOwnerID(ownerID int64) ([]TenantRecord, error) {
+	var tr []TenantRecord
+	err := db.Debug().Model(&TenantRecord{}).Where("owner_id=?", ownerID).Order("id desc").Scan(&tr).Error
+	return tr, err
+}
