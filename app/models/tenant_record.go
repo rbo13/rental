@@ -9,6 +9,7 @@ type TenantRecord struct {
 	ID                  int64     `json:"id" gorm:"AUTO_INCREMENT"`
 	TenantID            int64     `json:"tenant_id" gorm:"index"`
 	UnitID              int64     `json:"unit_id" gorm:"index"`
+	OwnerID             int64     `json:"owner_id" gorm:"index"`
 	FirstName           string    `json:"first_name"`
 	LastName            string    `json:"last_name"`
 	UnitType            string    `json:"unit_type"`

@@ -56,6 +56,21 @@ func RequestRentHandler(c *gin.Context) {
 	tenantLastName := GetMyLastName(c)
 	tenantID := GetMyAccountID(c)
 
+	unit, err := models.GetUnitByUnitID(unitID)
+	owner, getErr := models.GetOwnerByID(unit.OwnerID)
+
+	if getErr != nil {
+		SetFlashError(c, getErr.Error())
+		Redirect(c, "/home")
+		return
+	}
+
+	if err != nil {
+		SetFlashError(c, err.Error())
+		Redirect(c, "/home")
+		return
+	}
+
 	if tenantFirstName == "" && tenantLastName == "" {
 		SetFlashError(c, "You need to update your profile")
 		Redirect(c, "/profile")
@@ -67,15 +82,16 @@ func RequestRentHandler(c *gin.Context) {
 	tenantRecord.LastName = tenantLastName
 	tenantRecord.TenantID = tenantID
 	tenantRecord.UnitID = unitID
+	tenantRecord.OwnerID = owner.ID
 	tenantRecord.StartDate = startDate.(string)
 	tenantRecord.EndDate = endDate.(string)
 	tenantRecord.UnitType = unitType.(string)
 	tenantRecord.TenantStatus = false
 	tenantRecord.PaymentStatus = false
 
-	err := tenantRecord.Create()
+	createErr := tenantRecord.Create()
 
-	if err != nil {
+	if createErr != nil {
 		SetFlashError(c, "Error inserting new tenant")
 		Redirect(c, "/home")
 		return
