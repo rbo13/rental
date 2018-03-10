@@ -39,6 +39,11 @@ func (tr *TenantRecord) Create() error {
 	return err
 }
 
+// Update updates the tenant record
+func (tr *TenantRecord) Update() error {
+	return db.Debug().Model(&tr).Where("id=?", tr.ID).Update(&tr).Error
+}
+
 // GetTenantRecordByID gets by id
 func GetTenantRecordByID(id int64) (*TenantRecord, error) {
 	var tr TenantRecord
@@ -49,13 +54,13 @@ func GetTenantRecordByID(id int64) (*TenantRecord, error) {
 // GetTenantRecordByOwnerID gets by owner id
 func GetTenantRecordByOwnerID(ownerID int64) (*TenantRecord, error) {
 	var tr TenantRecord
-	err := db.Debug().Model(&tr).Where("owner_id=? and tenant_status=0", ownerID).Scan(&tr).Error
+	err := db.Debug().Model(&tr).Where("owner_id=?", ownerID).Scan(&tr).Error
 	return &tr, err
 }
 
 // GetRecordsByOwnerID returns an arry of records
 func GetRecordsByOwnerID(ownerID int64) ([]TenantRecord, error) {
 	var tr []TenantRecord
-	err := db.Debug().Model(&TenantRecord{}).Where("owner_id=?", ownerID).Order("id desc").Scan(&tr).Error
+	err := db.Debug().Model(&TenantRecord{}).Where("owner_id=? and tenant_status=0", ownerID).Order("id desc").Scan(&tr).Error
 	return tr, err
 }

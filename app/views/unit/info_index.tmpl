@@ -3,14 +3,29 @@
   <div class="container">
     <div class="row">
       <h5>{{.unitInfo}}:</h5>
-      <div class="card small">
+      <div class="card large">
         <div class="card-header">
           <h5>Unit Number: {{.unit.UnitNumber}}</h5>
         </div>
         <form action="/request/rent/{{.unit.ID}}" method="post">
           <div class="card-content">
-            <div style="font-size: 22px;">
-              Unit Type: <strong>{{.unit.UnitType}}</strong>
+            <div>
+              {{if .startDate}}
+                <input id="startDate" name="startDate" type="text" class="datepicker" placeholder="Start Date" value="{{.startDate}}">
+              {{else}}
+                <input id="startDate" name="startDate" type="text" class="datepicker" placeholder="Start Date">
+              {{end}}
+            </div>
+            <div>
+              {{if .endDate}}
+                <input id="endDate" name="endDate" type="text" class="datepicker" placeholder="End Date" value="{{.endDate}}">
+              {{else}}
+                <input id="endDate" name="endDate" type="text" class="datepicker" placeholder="End Date">
+              {{end}}
+            </div>
+            <div class="input-field col s12">
+              <input id="unitType" type="text" name="unitType" value="{{.unit.UnitType}}" readonly/>
+              <label for="unitType">Unit Type</label>
             </div>
             <div style="font-size: 22px;">
               Owned By: <strong>{{.ownerFullName}}</strong>

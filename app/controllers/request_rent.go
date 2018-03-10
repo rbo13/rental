@@ -17,6 +17,10 @@ func RequestRentHandler(c *gin.Context) {
 	var endDate interface{}
 	var unitType interface{}
 
+	var startDateSubmit string
+	var endDateSubmit string
+	var unitTypeSubmit string
+
 	if !IsLogin(c) {
 		SetFlashError(c, "Authentication is required")
 		Redirect(c, "/login")
@@ -25,32 +29,44 @@ func RequestRentHandler(c *gin.Context) {
 
 	unitIDStr := c.Param("unit_id")
 	unitID, parseErr := strconv.ParseInt(unitIDStr, 10, 64)
+	startDateForm := c.PostForm("startDate")
+	endDateForm := c.PostForm("endDate")
+	unitTypeForm := c.PostForm("unitType")
+
 	if parseErr != nil {
 		SetFlashError(c, parseErr.Error())
 		Redirect(c, "/home")
 		return
 	}
-	if startDate = session.Get("startDate"); startDate != nil {
-		val, ok := startDate.(int)
 
-		if ok && val == 1 {
-			log.Println(val)
+	if unitTypeForm == "" && startDateForm == "" && endDateForm == "" {
+		if startDate = session.Get("startDate"); startDate != nil {
+			val, ok := startDate.(int)
+			startDateSubmit = startDate.(string)
+			if ok && val == 1 {
+				log.Println(val)
+			}
+		}
+		if endDate = session.Get("endDate"); endDate != nil {
+			val, ok := endDate.(int)
+			endDateSubmit = endDate.(string)
+			if ok && val == 1 {
+				log.Println(val)
+			}
+		}
+		if unitType = session.Get("unitType"); unitType != nil {
+			val, ok := unitType.(int)
+			unitTypeSubmit = unitType.(string)
+
+			if ok && val == 1 {
+				log.Println(val)
+			}
 		}
 	}
-	if endDate = session.Get("endDate"); endDate != nil {
-		val, ok := endDate.(int)
 
-		if ok && val == 1 {
-			log.Println(val)
-		}
-	}
-	if unitType = session.Get("unitType"); unitType != nil {
-		val, ok := unitType.(int)
-
-		if ok && val == 1 {
-			log.Println(val)
-		}
-	}
+	startDateSubmit = startDateForm
+	endDateSubmit = endDateForm
+	unitTypeSubmit = unitTypeForm
 
 	tenantFirstName := GetMyFirstName(c)
 	tenantLastName := GetMyLastName(c)
@@ -83,9 +99,9 @@ func RequestRentHandler(c *gin.Context) {
 	tenantRecord.TenantID = tenantID
 	tenantRecord.UnitID = unitID
 	tenantRecord.OwnerID = owner.ID
-	tenantRecord.StartDate = startDate.(string)
-	tenantRecord.EndDate = endDate.(string)
-	tenantRecord.UnitType = unitType.(string)
+	tenantRecord.StartDate = startDateSubmit
+	tenantRecord.EndDate = endDateSubmit
+	tenantRecord.UnitType = unitTypeSubmit
 	tenantRecord.TenantStatus = false
 	tenantRecord.PaymentStatus = false
 

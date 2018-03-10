@@ -1,36 +1,41 @@
 {{define "content"}}
+{{$recordLen := len .records}}
 <div id="admin-view-request" class="section">
   <div class="row">
     <div class="container">
       <div>
-        <h5>{{.requestIndex}}</h5>
+        <h5>{{.requestIndex}}:</h5>
       </div>
       <div>
-        <table id="manageUnit" class="mdl-data-table highlight" cellspacing="0" width="100%">
-          <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Status</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Action</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {{range $record := .records}}
+        {{if gt $recordLen 0}}
+          <table id="manageUnit" class="mdl-data-table highlight" cellspacing="0" width="100%">
+            <thead>
               <tr>
-                <td>{{$record.FirstName}}</td>
-                <td>{{$record.LastName}}</td>
-                <td>{{$record.TenantStatus | sanitizeRequest}}</td>
-                <td>{{$record.StartDate}}</td>
-                <td>{{$record.EndDate}}</td>
-                <td><a href="#!">Accept Request</a></td>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Status</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Action</th>
               </tr>
-            {{end}}
-          </tbody>
-        </table>
+            </thead>
+            
+              <tbody>
+                {{range $record := .records}}
+                  <tr>
+                    <td>{{$record.FirstName}}</td>
+                    <td>{{$record.LastName}}</td>
+                    <td>{{$record.TenantStatus | sanitizeRequest}}</td>
+                    <td>{{$record.StartDate}}</td>
+                    <td>{{$record.EndDate}}</td>
+                    <td><a href="/admin/accept/request/{{$record.ID}}">Accept Request</a></td>
+                  </tr>
+                {{end}}
+              </tbody>
+          </table>
+        {{else}}
+          <h5>No Pending Request</h5>
+        {{end}}
       </div>
     </div>
   </div>

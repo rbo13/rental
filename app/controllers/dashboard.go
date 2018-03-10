@@ -17,6 +17,11 @@ func DashboardIndex(c *gin.Context) {
 		return
 	}
 
+	if IsAdmin(c) {
+		Redirect(c, "/admin/home")
+		return
+	}
+
 	RenderHTML(c, gin.H{
 		"dashboard": "Dashboard Page",
 	})

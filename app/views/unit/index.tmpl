@@ -1,0 +1,38 @@
+{{define "content"}}
+{{$unitLen := len .units}}
+<div id="unit-index" class="section">
+  <div class="container">
+    <div class="row">
+      <h5>{{.unitViewer}}:</h5>
+      {{if gt $unitLen 0}}
+        <table id="manageUnit" class="mdl-data-table highlight" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+                <th>Unit Number</th>
+                <th>Unit Type</th>
+                <th>Unit Price</th>
+                <th>Unit Status</th>
+                <th>Action</th>
+            </tr>
+          </thead>
+          
+            <tbody>
+              {{range $unit := .units}}
+                <tr>
+                  <td>{{$unit.UnitNumber}}</td>
+                  <td>{{$unit.UnitType}}</td>
+                  <td>PHP {{$unit.UnitPrice | intcomma}}</td>
+                  <td>{{$unit.UnitStatus | convertStatusToString}}</td>
+                  <td><a href="/unit/info/{{$unit.ID}}">See</a></td>
+                </tr>
+              {{end}}
+            </tbody>
+        </table>
+      {{else}}
+        <h5>No units listed</h5>
+      {{end}}
+      
+    </div>
+  </div>
+</div>
+{{end}}

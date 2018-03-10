@@ -80,6 +80,9 @@ func initializeRoutes(origRouter *gin.Engine) {
 	// Rent
 	router.GET("/rent", controllers.MyRentControllerIndex)
 
+	// Units
+	router.GET("/units", controllers.UnitIndex)
+
 	// Search Result
 	router.GET("/search/unit", controllers.SearchUnitIndex)
 	router.GET("/unit/info/:unit_id", controllers.UnitInfoIndex)
@@ -108,6 +111,7 @@ func initializeRoutes(origRouter *gin.Engine) {
 		admin.GET("/manage", controllers.AdminManageIndex)
 		admin.GET("/all/tenants", controllers.ListTenantsIndex) // This route handels the stored procedure
 		admin.GET("/view/request", controllers.ViewRequestIndex)
+		admin.GET("/accept/request/:request_id", controllers.AcceptRequestIndex)
 		admin.POST("/add/unit", controllers.AdminUnitAddHandler)
 		admin.POST("/update/profile", controllers.AdminUpdateProfileHandler)
 	}
