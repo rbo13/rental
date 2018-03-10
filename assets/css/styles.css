@@ -18,6 +18,10 @@ html, body {
   background-color: #e0e0e0;
 }
 
+body {
+    background-image: url("/assets/images/bgimage.jpg");
+}
+
 main {
   flex: 1 0 auto;
 }
