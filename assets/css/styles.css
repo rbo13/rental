@@ -630,3 +630,7 @@ nav > .nav-header > h1 {
   .mdl-button .material-icons{
       vertical-align:middle
   }
+
+.highlight-text {
+    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+}
