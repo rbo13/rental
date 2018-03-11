@@ -1,0 +1,25 @@
+{{define "partials/maintenance_side_nav"}}
+  <div class="col s12" style="position: relative;">
+    <img class="circle responsive-img" src="/assets/images/user_noimg.png" style="width: 50px; height: 50px;"> 
+    <p style="position: absolute; top: 0px; left: 80px;">{{.fullName}}</p>
+  </div>
+  <div>
+    <ul class="collection" style="padding: 20px;">My Account
+      {{if eq .current_uri "/maintenance/profile"}}
+        <li class="collection-item" style="background-color: blue;">
+          <a href="/maintenance/profile">Profile</a>
+        </li>
+      {{else}}
+        <li class="collection-item">
+          <a href="/maintenance/profile">Profile</a>
+        </li>
+      {{end}}
+      <li class="collection-item">
+        <a href="/maintenance/payslip">My Payslip</a>
+      </li>
+      <li class="collection-item">
+        <a href="/maintenance/change">My Contract</a>
+      </li>
+    </ul>
+  </div>
+{{end}}

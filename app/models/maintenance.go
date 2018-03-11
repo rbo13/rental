@@ -18,6 +18,7 @@ type Maintenance struct {
 	Birthdate    string    `json:"birthdate"`
 	Password     string    `json:"-"`
 	Age          int       `json:"age"`
+	Gender       string    `json:"gender"`
 	Status       bool      `json:"status"`
 	CreatedAt    time.Time `json:"created_at"`
 	UpdatedAt    time.Time `json:"updated_at"`

@@ -33,6 +33,7 @@ func RenderTemplate(c *gin.Context, tmpl string, data gin.H, statusCode int) {
 	data["tenantID"] = GetMyTenantID(c)
 	data["is_admin"] = IsAdmin(c)
 	data["ownerID"] = GetMyOwnerID(c)
+	data["maintenanceID"] = GetMyMaintenanceID(c)
 
 	if !IsAdmin(c) {
 		data["tenantFirstname"] = GetMyFirstName(c)
@@ -230,6 +231,20 @@ func GetMyAccountID(c *gin.Context) int64 {
 	session := sessions.Default(c)
 
 	if userID := session.Get("account_id"); userID != nil {
+		valUserID, ok := userID.(int64)
+		if ok {
+			return valUserID
+		}
+	}
+
+	return 0
+}
+
+// GetMyMaintenanceID ...
+func GetMyMaintenanceID(c *gin.Context) int64 {
+	session := sessions.Default(c)
+
+	if userID := session.Get("maintenance_id"); userID != nil {
 		valUserID, ok := userID.(int64)
 		if ok {
 			return valUserID
