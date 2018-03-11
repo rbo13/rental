@@ -1,0 +1,62 @@
+{{define "maintenance_content"}}
+<div id="maintenance-request-info" class="section">
+  <div class="row">
+    <div class="container">
+      <div class="col l6">
+        <div class="col l12">
+          <p style="font-weight: bold;" class="highlight-text">Maintenance - Tenant Messaging</p>
+        </div>
+        <div class="col l12" style="border: 1px; background-color: white;">
+          <ul class="styled-list">
+            <li>Please fix our defective doorknob</li>
+            <li>Okay</li>
+          </ul>
+        </div>
+        <div class="col l12" style="background-color: white;">
+          <div class="input-field col l6">
+            <textarea id="textarea1" class="materialize-textarea"></textarea>
+            <label for="textarea1">Type here...</label>
+          </div>
+          <div class="col l6" style="margin-top: 40px;">
+            <button type="submit" class="btn btn-success light-blue darken-3 waves-effect waves-light">Send</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col l6" style="border: 1px solid; background-color: white; padding: 12px;">
+        <div>
+          <div class="col l3">
+            <img class="circle responsive-img" src="/assets/images/user_noimg.png">
+          </div>
+          <div class="col l9">
+            <h5>{{.tenantRequestInfo}}</h5>
+          </div>
+        </div>
+
+        <div class="col l12">
+          <p>Date Requested: February 8, 2018</p>
+          <p>Maintenance Transaction no. M3412</p>
+          <p>Tenant Name: Beverly May Castillo</p>
+          <p>Unit no. R530</p>
+          <p>Status: Pending</p>
+        </div>
+
+        <div class="col l12">
+          <p>Reason:</p>
+          <div class="input-field col s12">
+            <textarea id="textarea1" class="materialize-textarea" readonly></textarea>
+            <label for="textarea1">Broken Doorknob</label>
+          </div>
+        </div>
+        <div class="col l12">
+          <p>Preferred Dates: March 4-5, 2018</p>
+          <p>Preferred Times: 12 Noon until 3 PM</p>
+        </div>
+        <div class="col l12" style="text-align: center;">
+          <button type="submit" class="btn btn-success light-blue darken-3 waves-effect waves-light">Visit Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{end}}

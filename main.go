@@ -129,6 +129,7 @@ func initializeRoutes(origRouter *gin.Engine) {
 		maintenance.GET("/profile", controllers.MaintenanceProfileIndex)
 		maintenance.GET("/payslip", controllers.MaintenancePayslipIndex)
 		maintenance.GET("/request", controllers.MaintenanceRequestIndex)
+		maintenance.GET("/request/info/:request_id", controllers.MaintenanceRequestInfoIndex)
 		// admin.GET("/generate/user", controllers.AdminGenerateUser)
 		// admin.GET("/list/owner", controllers.AdminShowListOfOwnerByType)
 		// admin.GET("/unit", controllers.AdminUnitIndex)

@@ -634,3 +634,35 @@ nav > .nav-header > h1 {
 .highlight-text {
     text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
 }
+
+.styled-list {
+    list-style: none;
+    max-width: 200px;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+  
+.styled-list li {
+    /* position: relative; */
+    padding-left: 10px;
+}
+.styled-list li:before {
+    border-radius: 100%;
+    position: absolute;
+    background: #000;
+    content: '';
+    height: 5px;
+    width: 5px;
+    top: 6px;
+    left: 0;
+}
+.styled-list li:nth-child(even) {
+    padding-right: 10px;
+    text-align: right;
+    padding-left: 0;
+}
+.styled-list li:nth-child(even):before {
+    left: auto;
+    right: 0;
+}

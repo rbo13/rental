@@ -14,3 +14,12 @@ func MaintenanceRequestIndex(c *gin.Context) {
 		"tenantRequest": "Tenant Requests",
 	})
 }
+
+// MaintenanceRequestInfoIndex request info
+func MaintenanceRequestInfoIndex(c *gin.Context) {
+	log.Println("MaintenanceRequestInfoIndex")
+
+	RenderHTML(c, gin.H{
+		"tenantRequestInfo": "Tenant Requests Information",
+	})
+}
