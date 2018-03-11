@@ -1,0 +1,56 @@
+{{define "partials/maintenance_nav"}}
+<nav>
+  <div class="nav-wrapper light-green darken-3">
+    
+    <ul id="nav-mobile" class="hide-on-med-and-down">
+      {{if .is_login}}
+        <li><a href="/home" class="brand-logo no-abs">RV Home Rental</a></li>
+        <li class="ml-20"><a href="/catalog">Catalog</a></li>
+        <li>
+          <a class="dropdown-button" href="#!" data-activates="unitSelection">Unit <i class="material-icons right">arrow_drop_down</i></a>
+        </li>
+        <li><a class="dropdown-button" href="#!" data-activates="tenantSelection">Tenant <i class="material-icons right">arrow_drop_down</i> </a></li>
+        <li><a href="/maintenance">Maintenance</a></li>
+        <li><a href="/report">Report</a></li>
+      {{else}}
+        <li><a href="/home" class="brand-logo no-abs">RV Home Rental</a></li>
+        <li class="ml-20"><a href="/catalog">Catalog</a></li>
+        <li><a class="dropdown-button" href="#!" data-activates="unitSelection">Unit <i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-button" href="#!" data-activates="tenantSelection">Tenant <i class="material-icons right">arrow_drop_down</i> </a></li>
+        <li><a href="/maintenance">Maintenance</a></li>
+        <li><a href="/report">Report</a></li>
+      {{end}}
+    </ul>
+    
+    <ul class="right hide-on-med-and-down">
+      {{if .is_login}}
+        <li><a href="/messages">Messages</a></li>
+        <!-- Dropdown Trigger -->
+        <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Hi, {{.email}}<i class="material-icons right">arrow_drop_down</i></a></li>
+      {{else}}
+        <li><a href="/login">Login as Tenant</a></li>
+        <li><a href="/admin/login">Login as Admin/Owner</a></li>
+      {{end}}
+    </ul>
+  </div>
+</nav>
+<ul id="dropdown1" class="dropdown-content">
+  <li><a href="/admin/profile">Profile</a></li>
+  <!-- <li><a href="/rent">My Rent</a></li>
+  <li><a href="/payments">My Payments</a></li>
+  <li><a href="/agreement">My Rental Agreement</a></li> -->
+  <li class="divider"></li>
+  <li><a href="/logout">Logout</a></li>
+</ul>
+<ul id="unitSelection" class="dropdown-content">
+  <li><a href="/admin/manage">Manage Units</a></li>
+  <li><a href="/admin/unit">Add a Unit</a></li>
+</ul>
+
+<ul id="tenantSelection" class="dropdown-content">
+  <li><a href="/admin/all/tenants">View All Tenants</a></li>
+  <li><a href="/admin/view/request">Add a Tenant</a></li>
+</ul>
+
+
+{{end}}

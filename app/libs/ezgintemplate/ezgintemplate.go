@@ -11,17 +11,18 @@ import (
 
 // Render ...
 type Render struct {
-	Templates       map[string]*template.Template
-	TemplatesDir    string
-	Layout          string
-	AmpLayout       string
-	AppLayout       string
-	AdminLayout     string
-	WidgetLayout    string
-	Ext             string
-	TemplateFuncMap map[string]interface{}
-	Debug           bool
-	PartialsDir     string
+	Templates         map[string]*template.Template
+	TemplatesDir      string
+	Layout            string
+	AmpLayout         string
+	AppLayout         string
+	AdminLayout       string
+	MaintenanceLayout string
+	WidgetLayout      string
+	Ext               string
+	TemplateFuncMap   map[string]interface{}
+	Debug             bool
+	PartialsDir       string
 }
 
 // New ...
@@ -35,11 +36,12 @@ func New() Render {
 		// TemplatesDir holds the location of the templates
 		TemplatesDir: "app/views/",
 		// Layout is the file name of the layout file
-		Layout:       "layouts/base",
-		AmpLayout:    "layouts/amp",
-		AppLayout:    "layouts/app",
-		AdminLayout:  "layouts/admin",
-		WidgetLayout: "layouts/widget",
+		Layout:            "layouts/base",
+		AmpLayout:         "layouts/amp",
+		AppLayout:         "layouts/app",
+		AdminLayout:       "layouts/admin",
+		MaintenanceLayout: "layouts/maintenance",
+		WidgetLayout:      "layouts/widget",
 		// Ext is the file extension of the rendered templates
 		Ext: ".html",
 		// Template's function map
@@ -58,6 +60,7 @@ func (r Render) Init() Render {
 	appLayout := r.TemplatesDir + r.AppLayout + r.Ext
 	adminLayout := r.TemplatesDir + r.AdminLayout + r.Ext
 	widgetLayout := r.TemplatesDir + r.WidgetLayout + r.Ext
+	maintenanceLayout := r.TemplatesDir + r.MaintenanceLayout + r.Ext
 
 	viewDirs, _ := filepath.Glob(r.TemplatesDir + "**/*" + r.Ext)
 
@@ -72,7 +75,7 @@ func (r Render) Init() Render {
 		if r.Debug {
 			log.Printf("[GIN-debug] %-6s %-25s --> %s\n", "LOAD", view, renderName)
 		}
-		tpls := append([]string{layout, ampLayout, appLayout, adminLayout, widgetLayout, view}, partials...)
+		tpls := append([]string{layout, ampLayout, appLayout, adminLayout, widgetLayout, maintenanceLayout, view}, partials...)
 		r.AddFromFiles(renderName, tpls...)
 		//r.AddFromFiles(renderName, layout, view)
 	}
@@ -106,6 +109,10 @@ func (r Render) AddFromFiles(name string, files ...string) *template.Template {
 		return tmpl
 	} else if strings.Contains(name, "admin") {
 		tmpl := template.Must(template.New(filepath.Base(r.AdminLayout + r.Ext)).Funcs(r.TemplateFuncMap).ParseFiles(files...))
+		r.Add(name, tmpl)
+		return tmpl
+	} else if strings.Contains(name, "maintenance") {
+		tmpl := template.Must(template.New(filepath.Base(r.MaintenanceLayout + r.Ext)).Funcs(r.TemplateFuncMap).ParseFiles(files...))
 		r.Add(name, tmpl)
 		return tmpl
 	} else if strings.Contains(name, "app/") {

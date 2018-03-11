@@ -21,6 +21,9 @@ html, body {
 body {
     background-image: url("/assets/images/bgimage.jpg");
 }
+body.maintenance {
+    background-image: url("/assets/images/maintenance-bg.jpg");
+}
 
 main {
   flex: 1 0 auto;

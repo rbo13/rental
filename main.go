@@ -115,4 +115,23 @@ func initializeRoutes(origRouter *gin.Engine) {
 		admin.POST("/add/unit", controllers.AdminUnitAddHandler)
 		admin.POST("/update/profile", controllers.AdminUpdateProfileHandler)
 	}
+
+	maintenance := origRouter.Group("/maintenance")
+	{
+		maintenance.GET("/", controllers.MaintenanceIndex)
+		// admin.GET("/register", controllers.AdminRegisterIndex)
+		// admin.POST("/register", controllers.AdminRegisterHandler)
+		// admin.POST("/login", controllers.AdminLoginHandler)
+		// admin.GET("/home", controllers.AdminHomeIndex)
+		// admin.GET("/profile", controllers.AdminProfileIndex)
+		// admin.GET("/generate/user", controllers.AdminGenerateUser)
+		// admin.GET("/list/owner", controllers.AdminShowListOfOwnerByType)
+		// admin.GET("/unit", controllers.AdminUnitIndex)
+		// admin.GET("/manage", controllers.AdminManageIndex)
+		// admin.GET("/all/tenants", controllers.ListTenantsIndex) // This route handels the stored procedure
+		// admin.GET("/view/request", controllers.ViewRequestIndex)
+		// admin.GET("/accept/request/:request_id", controllers.AcceptRequestIndex)
+		// admin.POST("/add/unit", controllers.AdminUnitAddHandler)
+		// admin.POST("/update/profile", controllers.AdminUpdateProfileHandler)
+	}
 }
