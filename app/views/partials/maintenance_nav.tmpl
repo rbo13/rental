@@ -16,7 +16,9 @@
     
     <ul class="right hide-on-med-and-down" style="color: black;">
       {{if .is_login}}
-        <li><a href="/messages" class="black-text">Messages</a></li>
+        <li><a href="/maintenance/request" class="black-text">Requests</a></li>
+        <li><a href="#!" class="black-text">Reports</a></li>
+        <li><a href="#!" class="black-text">Notifications</a></li>
         <!-- Dropdown Trigger -->
         <li><a class="dropdown-button black-text" href="#!" data-activates="dropdown1">Hi, {{.email}}<i class="material-icons right">arrow_drop_down</i></a></li>
       {{else}}

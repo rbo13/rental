@@ -1,0 +1,82 @@
+{{define "maintenance_content"}}
+<div id="maintenance-request" class="section">
+  <div class="row">
+    <div class="container">
+      <h5>{{.tenantRequest}}</h5>
+      
+      <div class="row">
+        <div class="input-field col l3">
+          <input placeholder="Search" id="search" type="text" class="validate">
+          <label for="search">Search</label>
+        </div>
+        <div class="input-field col l3">
+          <button type="submit" class="btn btn-success light-blue darken-3 waves-effect waves-light">Search</button>
+        </div>
+
+        <div class="col l12">
+          <span style="font-weight: bold;">Filters:</span>
+          <span>Status:</span>
+          
+            <input name="group1" type="radio" id="test1" />
+            <label for="test1">All</label>
+          
+            <input name="group1" type="radio" id="test2" />
+            <label for="test2">Pending</label>
+    
+            <input class="with-gap" name="group1" type="radio" id="test3"  />
+            <label for="test3">Visited</label>
+      
+            <input name="group1" type="radio" id="test4" />
+            <label for="test4">Completed</label>
+        </div>
+
+        <table class="highlight responsive-table" style="background-color: white;">
+          <thead>
+            <tr>
+                <th>Date</th>
+                <th>Details</th>
+                <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>
+                February 8, 2018
+                7:00 AM
+              </td>
+              <td>
+                Maintenance Transaction no. M3412
+                Unit No. R530
+              </td>
+              <td>Completed</td>
+            </tr>
+            <tr>
+              <td>
+                February 8, 2018
+                7:00 AM
+              </td>
+              <td>
+                Maintenance Transaction no. M3412
+                Unit No. R530
+              </td>
+              <td>Completed</td>
+            </tr>
+            <tr>
+              <td>
+                February 8, 2018
+                7:00 AM
+              </td>
+              <td>
+                Maintenance Transaction no. M3412
+                Unit No. R530
+              </td>
+              <td>Completed</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{{end}}
