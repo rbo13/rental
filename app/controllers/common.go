@@ -101,6 +101,15 @@ func SetAuth(c *gin.Context, account models.Account) {
 	session.Save()
 }
 
+// SetAuthMaintenance ...
+func SetAuthMaintenance(c *gin.Context, maintenance models.Maintenance) {
+	session := sessions.Default(c)
+	session.Set("maintenance_id", maintenance.ID)
+	session.Set("email", maintenance.EmailAddress)
+	session.Set("is_login", 1)
+	session.Save()
+}
+
 // ClearAuth ...
 func ClearAuth(c *gin.Context) {
 	session := sessions.Default(c)
