@@ -123,7 +123,7 @@ func initializeRoutes(origRouter *gin.Engine) {
 		maintenance.GET("/login", controllers.MaintenanceLoginIndex)
 		maintenance.GET("/register", controllers.MaintenanceRegisterIndex)
 		// admin.GET("/register", controllers.AdminRegisterIndex)
-		// admin.POST("/register", controllers.AdminRegisterHandler)
+		maintenance.POST("/register", controllers.MaintenanceRegisterHandler)
 		// admin.POST("/login", controllers.AdminLoginHandler)
 		// admin.GET("/home", controllers.AdminHomeIndex)
 		// admin.GET("/profile", controllers.AdminProfileIndex)
