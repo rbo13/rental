@@ -14,9 +14,15 @@
           <a href="/maintenance/profile">Profile</a>
         </li>
       {{end}}
-      <li class="collection-item">
-        <a href="/maintenance/payslip">My Payslip</a>
-      </li>
+      {{if eq .current_uri "/maintenance/payslip"}}
+        <li class="collection-item" style="background-color: blue;">
+          <a href="/maintenance/payslip">My Payslip</a>
+        </li>
+      {{else}}
+        <li class="collection-item">
+          <a href="/maintenance/payslip">My Payslip</a>
+        </li>
+      {{end}}
       <li class="collection-item">
         <a href="/maintenance/change">My Contract</a>
       </li>
