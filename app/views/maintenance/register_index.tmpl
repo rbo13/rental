@@ -1,0 +1,39 @@
+{{define "maintenance_content"}}
+<div id="maintenance-register" class="section">
+  <div class="container">
+    <div class="row">
+      <form method="post" action="/maintenance/register">
+        <div class="col s12 offset-l3 l6 card card-container">
+          <div class="card-header grey lighten-3">
+            <h5 class="black-text text-darken-3">Register</h5>
+          </div>
+          <div class="card-content">
+            {{if .csrf_token}}
+              <input type="hidden" name="csrf_token" value="{{.csrf_token}}" />
+            {{end}}
+            <div class="input-field col s12">
+              <input id="email" name="emailAddress" type="email" class="validate">
+              <label for="email">Email Address</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="password" name="password" type="password" class="validate">
+              <label for="password">Password</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="confirmPassword" name="confirmPassword" type="password" class="validate">
+              <label for="confirmPassword">Confirm Password</label>
+            </div>
+          </div>
+          <div class="card-action grey lighten-4">
+            <button type="submit" class="btn btn-primary light-blue darken-3 waves-effect waves-light">Create account</button>
+          </div>
+        </div>
+      </form>
+      <p class="col s12 center text-muted center">Already have an account?</p>
+      <div class="col s12 row">
+        <a class="col s12 offset-l3 l6 btn btn-primary light-blue darken-3 waves-effect waves-light" href="/login">Login</a>
+      </div>
+    </div>
+  </div>
+</div>
+{{end}}
