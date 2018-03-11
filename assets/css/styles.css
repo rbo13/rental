@@ -22,7 +22,8 @@ body {
     background-image: url("/assets/images/bgimage.jpg");
 }
 body.maintenance {
-    background-image: url("/assets/images/maintenance-bg.jpg");
+    background-image: url("/assets/images/bg.jpg");
+    background-repeat: no-repeat;
 }
 
 main {
