@@ -119,6 +119,7 @@ func initializeRoutes(origRouter *gin.Engine) {
 	maintenance := origRouter.Group("/maintenance")
 	{
 		maintenance.GET("/", controllers.MaintenanceIndex)
+		maintenance.GET("/contact", controllers.ContactIndex)
 		// admin.GET("/register", controllers.AdminRegisterIndex)
 		// admin.POST("/register", controllers.AdminRegisterHandler)
 		// admin.POST("/login", controllers.AdminLoginHandler)

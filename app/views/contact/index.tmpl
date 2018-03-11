@@ -1,0 +1,55 @@
+{{define "content"}}
+<div id="maintenance-contact" class="section">
+  <div class="row">
+    <div class="container">
+      <div style="text-align: center; border: 1px; background: white; padding: 12px;">
+        <h5>{{.contact}}</h5>
+
+        <p style="margin-top: 24px;">
+          Have a question or want to learn more about how RV Home Rental can help you with your skills? Simply
+          enter your information in the fields below and we will follow up with your shortly. If you are an existing
+          maintenance on RV Home Rental and have a question, contact admin support (Maintenance Central login required).
+        </p>
+
+        <p style="margin-top: 40px;">
+          Please Note: All new Property Maintenance needs send an application letter directly to the property owner.
+        </p>
+
+        <div style="margin-top: 40px;">
+          <h5>Your Contact Information:</h5>
+        </div>
+
+        <div class="row" style="background-color: white;">
+          <form>
+          
+            <div class="input-field col s6">
+              <input id="first_name" type="text" class="validate">
+              <label for="first_name">First Name</label>
+            </div>
+
+            <div class="input-field col s6">
+              <input id="last_name" type="text" class="validate">
+              <label for="last_name">Last Name</label>
+            </div>
+
+            <div class="input-field col s6">
+              <input id="emailAddress" type="email" class="validate">
+              <label for="emailAddress">Email Address</label>
+            </div>
+
+            <div class="input-field col s6">
+              <input id="phoneNumber" type="text" class="validate">
+              <label for="phoneNumber">Phone Number</label>
+            </div>
+
+            <div style="text-align: center; padding: 12px;">
+              <button type="submit" class="btn btn-success light-blue darken-3 waves-effect waves-light">Submit</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{{end}}
